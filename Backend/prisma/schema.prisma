@@ -1,0 +1,76 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Company {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  users     User[]
+  modules   CompanyModule[]
+  accounts  Account[]
+  journals  JournalEntry[]
+}
+
+model User {
+  id        String @id @default(uuid())
+  email     String @unique
+  password  String
+  role      String // 'ADMIN' | 'USER'
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+}
+
+model Module {
+  id        String @id @default(uuid())
+  key       String @unique
+  name      String
+  companies CompanyModule[]
+}
+
+model CompanyModule {
+  id        String @id @default(uuid())
+  companyId String
+  moduleId  String
+  isActive  Boolean @default(true)
+  company   Company @relation(fields: [companyId], references: [id])
+  module    Module  @relation(fields: [moduleId], references: [id])
+  
+  @@unique([companyId, moduleId])
+}
+
+model Account {
+  id        String @id @default(uuid())
+  code      String
+  name      String
+  type      String // ASSET, LIABILITY, EQUITY, REVENUE, EXPENSE
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+  journalLines JournalLine[]
+  
+  @@unique([companyId, code])
+}
+
+model JournalEntry {
+  id          String @id @default(uuid())
+  date        DateTime @default(now())
+  description String
+  companyId   String
+  company     Company @relation(fields: [companyId], references: [id])
+  lines       JournalLine[]
+}
+
+model JournalLine {
+  id        String @id @default(uuid())
+  journalId String
+  accountId String
+  debit     Decimal
+  credit    Decimal
+  journal   JournalEntry @relation(fields: [journalId], references: [id])
+  account   Account      @relation(fields: [accountId], references: [id])
+}
