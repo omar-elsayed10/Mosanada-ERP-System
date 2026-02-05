@@ -56,9 +56,10 @@ Create a `.env` file in the `backend` directory:
 
 ```env
 # backend/.env
+DATABASE_URL="postgresql://neondb_owner:npg_QF6eYDa8ElTX@ep-snowy-scene-ai7va0r3-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+JWT_SECRET="supersecret_should_be_changed"
 PORT=4000
-DATABASE_URL="postgresql://user:password@localhost:5432/mosanada_db?schema=public"
-JWT_SECRET="your-super-secure-secret-key"
+
 ```
 
 Initialize the database schema:
