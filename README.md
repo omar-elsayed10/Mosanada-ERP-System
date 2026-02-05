@@ -2,7 +2,7 @@
 
 **Mosanada ERP** is a modern, cloud-native Enterprise Resource Planning system designed for scalability, multi-tenancy, and modularity. Built with a focus on Accounting and Financial management, it serves as a robust platform for managing multiple business entities securely and efficiently.
 
-![Mosanada ERP](./frontend/public/logo.png)
+(./frontend/public/logo.png)
 
 ---
 
