@@ -30,7 +30,7 @@ The system is built as a **Modular Monolith** with a clear separation of concern
 Before running the application, ensure you have the following installed:
 
 - **Node.js** (v18 or higher)
-- **PostgreSQL** (running locally or a cloud instance like Railway/Supabase)
+- **PostgreSQL** (running on a cloud instance like neno)
 - **Git**
 
 ---
