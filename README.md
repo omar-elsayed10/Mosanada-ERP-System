@@ -72,7 +72,7 @@ Start the backend server:
 
 ```bash
 npm run dev
-# Server runs on http://localhost:4000
+# Server runs on mosanada-erp-system-production.up.railway.app
 ```
 
 ### 3. Frontend Configuration
